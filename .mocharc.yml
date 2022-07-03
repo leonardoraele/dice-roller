@@ -1,0 +1,2 @@
+spec: ['lib/**/*.test.js']
+require: ['test/mocha-init.js']

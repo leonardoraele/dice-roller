@@ -1,0 +1,60 @@
+{
+  "name": "@leonardoraele/dice-roller",
+  "description": "Parser and evaluator of dice notations and mathematical expressions.",
+  "author": "Leonardo Raele <leonardoraele@gmail.com>",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leonardoraele/dice-roller.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leonardoraele/dice-roller/issues"
+  },
+  "keywords": [
+    "die",
+    "dice",
+    "roller",
+    "rpg",
+    "roll",
+    "d&d",
+    "dnd",
+    "dungeons",
+    "dragons",
+    "random",
+    "prng",
+    "roleplay",
+    "game",
+    "pathfinder",
+    "notation",
+    "parser",
+    "parse"
+  ],
+  "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/lodash": "^4.14.182",
+    "@types/mocha": "^9.1.1",
+    "chai": "^4.3.6",
+    "chai-deep-match": "^1.2.1",
+    "mocha": "^10.0.0",
+    "peggy": "^1.2.0"
+  },
+  "dependencies": {
+    "functional-red-black-tree": "^1.0.1",
+    "lodash": "^4.17.21",
+    "ramda": "^0.28.0",
+    "throw2": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=16.0"
+  },
+  "scripts": {
+    "build": "npm run build:parser",
+    "build:parser": "peggy --format es lib/**/*.pegjs",
+    "pretest": "npm run build:parser",
+    "test": "mocha"
+  }
+}
