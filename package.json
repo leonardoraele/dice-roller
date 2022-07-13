@@ -59,6 +59,6 @@
     "build:parser": "peggy --format es lib/**/*.pegjs",
     "pretest": "npm run build:parser",
     "test": "mocha",
-    "prepublishOnly": "npm test && npm run build"
+    "prepublishOnly": "npm test"
   }
 }
