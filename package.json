@@ -2,7 +2,7 @@
   "name": "@leonardoraele/dice-roller",
   "description": "Parser and evaluator of dice notations and mathematical expressions.",
   "author": "Leonardo Raele <leonardoraele@gmail.com>",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "type": "module",
   "main": "./lib/index.js",
