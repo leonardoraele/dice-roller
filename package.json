@@ -2,7 +2,7 @@
   "name": "@leonardoraele/dice-roller",
   "description": "Parser and evaluator of dice notations and mathematical expressions.",
   "author": "Leonardo Raele <leonardoraele@gmail.com>",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "type": "module",
   "main": "./lib/index.js",
@@ -59,6 +59,6 @@
     "build:parser": "peggy --format es lib/**/*.pegjs",
     "pretest": "npm run build:parser",
     "test": "mocha",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm test && npm run build"
   }
 }
