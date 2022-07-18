@@ -31,3 +31,5 @@ interface EvaluationResult {
 }
 
 export default function evaluate(expression: string, context?: object): EvaluationResult;
+
+export function toString(evaluationResult: EvaluationResult);
