@@ -2,18 +2,18 @@ type CompareOperator = 'eq'|'neq'|'lt'|'lte'|'gt'|'gte';
 type MathOperator = 'sum'|'sub'|'mul'|'div'|'pow';
 type Operator = CompareOperator|MathOperator;
 
-interface LiteralNumberNode {
+export interface LiteralNumberNode {
 	type: 'number',
 	value: number,
 }
 
-interface FunctionCallNode {
+export interface FunctionCallNode {
 	type: 'fn';
 	name: string;
 	args: Node[];
 }
 
-interface RollNode {
+export interface RollNode {
 	type: 'roll';
 	qnt: number;
 	sides: number;
@@ -22,29 +22,29 @@ interface RollNode {
 
 type Modifier = EmptyModifier|ModifierWValue|ModifierWRange;
 
-interface EmptyModifier {
+export interface EmptyModifier {
 	mod: string;
 }
 
-interface ModifierWValue {
+export interface ModifierWValue {
 	mod: string;
 	value: number;
 }
 
-interface ModifierWRange {
+export interface ModifierWRange {
 	mod: string;
 	rangeStart: number;
 	rangeEnd: number;
 }
 
-interface OperationNode {
+export interface OperationNode {
 	type: 'op';
 	op: Operator;
 	left: Node;
 	right: Node;
 }
 
-interface IdentifierNode {
+export interface IdentifierNode {
 	type: 'identifier';
 	name: string;
 }
