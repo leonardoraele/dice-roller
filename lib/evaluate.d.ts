@@ -1,16 +1,22 @@
-import { LiteralNumberNode, OperationNode, IdentifierNode, FunctionCallNode, RollNode } from "./parser/parse";
+import { LiteralNumberNode, IdentifierNode, FunctionCallNode, Operator } from "./parser/parse";
 
 interface ResolvedRollNode {
 	type: 'roll';
 	rolls: { roll: number, ignored?: { reason: string } }[];
 	value: number;
+	qnt: number;
+	sides: number;
 }
 
 interface ResolvedFunctionCallNode extends FunctionCallNode {
 	value: number;
 }
 
-interface ResolvedOperationNode extends OperationNode {
+interface ResolvedOperationNode {
+	type: 'op';
+	op: Operator;
+	left: EvaluationResolution;
+	right: EvaluationResolution;
 	value: number;
 }
 
