@@ -150,10 +150,10 @@ console.log(evaluate('abs(-5) === 5').total); // true
 
 #### Unsupported modifiers
 
-- `x`
-- `x!`
+- `x` — explode, or roll an extra die when a result matches the explode condition
+- `x!` — recursive explode, or keep exploding while the condition matches
 
-These explode modifiers are recognized by `parse()`, but `evaluate()` currently throws because they are not implemented yet.
+These explode modifiers are recognized by `parse()`, but `evaluate()` currently throws because explode evaluation is not implemented yet.
 
 ## API reference
 
@@ -175,7 +175,7 @@ Notes:
 - Rolls are generated with `Math.random()`.
 - Dice results are stored in `resolution.rolls`.
 - Dropped or rerolled dice are marked in the roll metadata.
-- Expressions that use `x` or `x!` currently throw because explode evaluation is not implemented.
+- Expressions that use the explode modifiers `x` or `x!` currently throw because explode evaluation is not implemented.
 
 ### `parse(expression)`
 
