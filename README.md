@@ -172,13 +172,13 @@ Notes:
 - Dropped or rerolled dice are marked in the roll metadata.
 - Arithmetic expressions produce numeric totals, and comparison expressions produce boolean totals.
 
-### `parse(diceNotation)`
+### `parse(expression)`
 
 Parses an expression and returns its AST without evaluating it.
 
 Parameters:
 
-- `diceNotation: string`
+- `expression: string`
 
 Returned node shapes include:
 
