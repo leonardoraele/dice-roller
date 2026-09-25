@@ -1,6 +1,7 @@
-# @leonardoraele/dice-roller
+# `@leonardoraele/dice-roller`
 
-`@leonardoraele/dice-roller` is a small ESM library for parsing and evaluating dice notation mixed with arithmetic expressions. It is useful for tabletop RPG rolls, probability helpers, and any workflow that needs both random dice rolls and expression parsing.
+This lib parses and evaluates dice expressions (e.g. `1d20` or `3d6`) and arithmetic operations.
+Intended to be used by TTRPG-related apps that allow users to perform dice rolls via text-based dice expressions.
 
 ## Installation
 
@@ -75,17 +76,18 @@ Identifiers are looked up from the `context` object by name.
 
 Supported functions are:
 
-- `abs(...)`
-- `ceil(...)`
-- `floor(...)`
-- `round(...)`
-- `sqrt(...)`
-- `min(...)`
-- `max(...)`
-- `mod(a, b)`
+- `abs(n: number)`
+- `ceil(n: number)`
+- `floor(n: number)`
+- `round(n: number)`
+- `sqrt(n: number)`
+- `min(a: number, b: number)` Returns the lower value
+- `max(a: number, b: number)` Returns the greater value
+- `mod(a, b)` Similar to `%` operator in JavaScript and other languages
 
 ```js
 console.log(evaluate('max(1d4, 2) + floor(3.8)').total);
+// Prints 5, 6, or 7; never 4.
 ```
 
 ### Supported operators
@@ -96,12 +98,12 @@ Arithmetic:
 - `-`
 - `*`
 - `/`
-- `^` or `**`
+- `^` or `**` (exponent)
 
 Comparisons:
 
-- `=` / `==` / `===`
-- `!=` / `!==` / `<>`
+- `=` | `==` | `===`
+- `!=` | `!==` | `<>`
 - `<`
 - `<=`
 - `>`
@@ -117,10 +119,10 @@ console.log(evaluate('abs(-5) === 5').total); // true
 
 #### Basic rolls
 
-- `d20`
-- `2d6`
-- `4d8 + 3`
-- `2d20kh1 + 5`
+- `d20` Rolls one 20-sided die.
+- `2d6` Rolls two 6-sided dice and sum the results.
+- `4d8 + 3` Rolls four 8-sided dice, sum the results, then add 3 to the total.
+- `2d20kh1 + 5` Rolls two 20-sided dice, keep the highest one, then add 5 to it.
 
 #### Keep and drop modifiers
 
@@ -128,8 +130,8 @@ console.log(evaluate('abs(-5) === 5').total); // true
 - `2d20kh1` — keep the highest die
 - `2d20kl1` — keep the lowest die
 - `5d6dh2` — drop the highest two dice
-- `8d10k7..10` — keep rolls in the given range
-- `8d10d1..2` — drop rolls in the given range
+- `8d10k7..10` — keep rolls in the given range, inclusive
+- `8d10d1..2` — drop rolls in the given range, inclusive
 
 #### Reroll modifiers
 
@@ -157,13 +159,13 @@ These explode modifiers are recognized by `parse()`, but `evaluate()` currently 
 
 ## API reference
 
-### `evaluate(expression, context?)`
+### `evaluate(expression: string, context?: Record<string, number>): object`
 
 Evaluates a dice or math expression and returns an object with:
 
-- `expression` — the original input string
-- `total` — the final evaluated value (`number` for arithmetic and dice expressions, `boolean` for comparisons)
-- `resolution` — the resolved syntax tree, including roll details
+- `expression: string` — the original input string
+- `total: number | boolean` — the final evaluated value (`number` for arithmetic and dice expressions, `boolean` for comparisons)
+- `resolution: object` — the resolved syntax tree, including roll details
 
 Parameters:
 
@@ -177,13 +179,9 @@ Notes:
 - Dropped or rerolled dice are marked in the roll metadata.
 - Expressions that use the explode modifiers `x` or `x!` currently throw because explode evaluation is not implemented.
 
-### `parse(expression)`
+### `parse(expression: string): object`
 
 Parses an expression and returns its AST without evaluating it.
-
-Parameters:
-
-- `expression: string`
 
 Returned node shapes include:
 
@@ -193,7 +191,7 @@ Returned node shapes include:
 - operation nodes: `{ type: 'op', op, left, right }`
 - roll nodes: `{ type: 'roll', qnt, sides, modifiers }`
 
-### `toString(evaluationResult)`
+### `toString(evaluationResult: object): string`
 
 Formats an evaluated result into a readable string.
 
@@ -205,7 +203,20 @@ Examples:
 
 ## Development
 
+Clone the repo and install dependencies:
+
 ```bash
-npm test
-npm run build
+git clone $REPO_URI dice-roller
+cd dice-roller
+npm install
 ```
+
+Run tests:
+
+```
+npm test
+```
+
+## License
+
+MIT. Full license text at [license.txt](./license.txt).
