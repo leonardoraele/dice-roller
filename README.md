@@ -162,7 +162,7 @@ These explode modifiers are recognized by `parse()`, but `evaluate()` currently 
 Evaluates a dice or math expression and returns an object with:
 
 - `expression` — the original input string
-- `total` — the final evaluated value
+- `total` — the final evaluated value (`number` for arithmetic and dice expressions, `boolean` for comparisons)
 - `resolution` — the resolved syntax tree, including roll details
 
 Parameters:
@@ -175,7 +175,6 @@ Notes:
 - Rolls are generated with `Math.random()`.
 - Dice results are stored in `resolution.rolls`.
 - Dropped or rerolled dice are marked in the roll metadata.
-- Arithmetic expressions produce numeric totals, and comparison expressions produce boolean totals.
 - Expressions that use `x` or `x!` currently throw because explode evaluation is not implemented.
 
 ### `parse(expression)`
