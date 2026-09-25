@@ -148,7 +148,12 @@ console.log(evaluate('abs(-5) === 5').total); // true
 - `4d20min15` — clamp each die to at least `15`
 - `4d20max5` — clamp each die to at most `5`
 
-> `x` and `x!` are parsed as explode modifiers, but evaluation is not implemented yet and currently throws an error.
+#### Unsupported modifiers
+
+- `x`
+- `x!`
+
+These explode modifiers are recognized by `parse()`, but `evaluate()` currently throws because they are not implemented yet.
 
 ## API reference
 
@@ -171,6 +176,7 @@ Notes:
 - Dice results are stored in `resolution.rolls`.
 - Dropped or rerolled dice are marked in the roll metadata.
 - Arithmetic expressions produce numeric totals, and comparison expressions produce boolean totals.
+- Expressions that use `x` or `x!` currently throw because explode evaluation is not implemented.
 
 ### `parse(expression)`
 
